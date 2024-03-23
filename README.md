@@ -68,5 +68,8 @@
             docker run -d --name count-app-container -e AWS_ACCESS_KEY_ID=aws access key -e AWS_SECRET_ACCESS_KEY=aws secret key -e AWS_DEFAULT_REGION=ap-south-1 -p 8000:8000 user/count-app:latest && echo "Container started successfully." || echo "Failed to start the container."
             echo "Script execution completed."
 
+- aws Change security
+
+    Secutity --> security group -> inbound rules -> Alltraffic , anywhere -> save changes.
         
 
