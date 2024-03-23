@@ -25,4 +25,4 @@ jobs:
           tags: amarnathreddysurapureddy0201/fastapi-app-simple:latest
 
       - name: Trigger EC2 update
-        run: "curl -X POST -d '{\"push\": {\"changes\": \"true\"}}' http://13.201.187.37:7000/hooks/update-docker-image"
+        run: "curl -X POST -d '{\"push\": {\"changes\": \"true\"}}' http://13.201.187.37:8000/hooks/update-docker-image"
