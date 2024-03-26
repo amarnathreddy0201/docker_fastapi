@@ -29,7 +29,7 @@
 
     - In ec2 instance
 
-        *** hooks.json ***
+        *** webhook/hooks.json ***
 
         [
             {
