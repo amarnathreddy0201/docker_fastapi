@@ -59,9 +59,9 @@
             # Remove the existing container (ignore errors if it does not exist)
             docker rm count-app-container && echo "Successfully removed count-app-container." || echo "No existing count-app-container to remove."
 
-            echo "Removing all but the latest image of arpit75/count-app..."
+            echo "Removing all but the latest image of dockerusername/count-app..."
             # Remove all images except the latest
-            docker images arpit75/count-app -q | tail -n +2 | xargs -r docker rmi && echo "Old images removed." || echo "No old images to remove."
+            docker images dockerusername/count-app -q | tail -n +2 | xargs -r docker rmi && echo "Old images removed." || echo "No old images to remove."
 
             echo "Running a new container from the latest image..."
             # Run a new container from the latest image with a specific name
