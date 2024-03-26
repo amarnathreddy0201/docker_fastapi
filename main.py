@@ -14,3 +14,6 @@ def read_root():
 @app.get("/data")
 def get_data():
     return {"data": "Hello World"}
+
+
+uvicorn.run(app, host="0.0.0.0")
