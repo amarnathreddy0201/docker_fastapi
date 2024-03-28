@@ -21,4 +21,4 @@ def get_data():
 def get_data():
     return {"data": "datafinal Hello World"}
 
-uvicorn.run(app, host="0.0.0.0")
+#uvicorn.run(app, host="0.0.0.0")
