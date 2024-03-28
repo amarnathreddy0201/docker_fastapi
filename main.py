@@ -20,6 +20,6 @@ def final():
 def hello():
     return {"hello": "Hello World"}
 
-# @app.get("/Info")
-# def Info():
-#     return {"Info": "Hello World"}
+@app.get("/Info")
+def Info():
+    return {"Info": "Hello World"}
