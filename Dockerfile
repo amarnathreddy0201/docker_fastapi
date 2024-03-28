@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Command to run the FastAPI application with Uvicorn
-CMD ["python", "main.py"]
+CMD ["python","main.py"]
