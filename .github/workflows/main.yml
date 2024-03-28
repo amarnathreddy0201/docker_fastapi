@@ -22,7 +22,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: amarnathreddysurapureddy0201/fastapi-app-simple:latest
+          tags: amarnathreddysurapureddy0201/fastapi-app-simple
 
       - name: Trigger EC2 update
         run: "curl -X POST -d '{\"push\": {\"changes\": \"true\"}}' http://65.0.138.43:7000/hooks/update-docker-image"
