@@ -25,7 +25,7 @@
     DOCKER_USERNAME : docker user name
 
 
-# Folder structure
+# Folder structure in the ec2
 
     - In ec2 instance
 
@@ -33,9 +33,9 @@
 
         [
             {
-                "id": "update-docker-image",
-                "execute-command": "/home/ubuntu/webhook/script.sh",
-                "command-working-directory": "/tmp"
+            "id": "update-docker-image",
+            "execute-command": "/home/ubuntu/webhook/script.sh",
+            "command-working-directory": "/tmp"
             }
         ]
 
@@ -43,30 +43,52 @@
 
             File name  :  script.sh
 
+            #!/bin/bash
+
+            set -e
+
             echo "Starting Docker login process..."
             # Docker login
-            echo "docker password" | docker login --username docker username --password-stdin && echo "Docker login successful." || echo "Docker login failed."
+            echo -n "Docker password" | docker login --username dockerusername --password-stdin && echo "Docker login successful." || { echo "Docker login failed."; exit 1; }
 
-            echo "Pulling the latest image of your image name..."
+            echo "Pulling the latest image of dockerusername/image nmae..."
             # Pull the latest image
-            docker pull user/count-app:latest && echo "Successfully pulled latest image." || echo "Failed to pull the latest image."
+            docker pull dockerusername/image nmae:latest && echo "Successfully pulled latest image." || { echo "Failed to pull the latest image."; exit 1; }
 
-            echo "Stopping existing container named count-app-container..."
+            echo "Stopping existing container named container name(fastapi-app-simple-container)..."
             # Stop the existing container (ignore errors if it does not exist)
-            docker stop count-app-container && echo "Successfully stopped count-app-container." || echo "No existing count-app-container to stop."
+            docker stop container name >/dev/null 2>&1 && echo "Successfully stopped fastapi-app-simple-container." || true
 
-            echo "Removing existing container named count-app-container..."
+            echo "Removing existing container named fastapi-app-simple-container..."
             # Remove the existing container (ignore errors if it does not exist)
-            docker rm count-app-container && echo "Successfully removed count-app-container." || echo "No existing count-app-container to remove."
+            docker rm container name(fastapi-app-simple-container) >/dev/null 2>&1 && echo "Successfully removed Container name(fastapi-app-simple-container)." || true
 
-            echo "Removing all but the latest image of dockerusername/count-app..."
+            echo "Removing all but the latest image of dockerusername/image name..."
             # Remove all images except the latest
-            docker images dockerusername/count-app -q | tail -n +2 | xargs -r docker rmi && echo "Old images removed." || echo "No old images to remove."
+            docker images dockerusername/imagename -q | tail -n +2 | xargs -r docker rmi && echo "Old images removed." || true
 
             echo "Running a new container from the latest image..."
             # Run a new container from the latest image with a specific name
-            docker run -d --name count-app-container -e AWS_ACCESS_KEY_ID=aws access key -e AWS_SECRET_ACCESS_KEY=aws secret key -e AWS_DEFAULT_REGION=ap-south-1 -p 8000:8000 user/count-app:latest && echo "Container started successfully." || echo "Failed to start the container."
+            docker run -d --name container name -p 8000:8000 docker user name/imagename:latest && echo "Container started successfully." || { echo "Failed to start the container."; exit 1; }
             echo "Script execution completed."
+
+- Permission for the files
+
+    chmod +x /home/ubuntu/webhook/script.sh
+
+- aws hooks command: 
+
+    webhook -hooks /home/ubuntu/webhook/hooks.json -verbose -port 7000
+
+    Run the above command in aws ec2.
+
+
+- Docker commands for running the Docker inside:
+
+    1) docker build -t fastapi-app-simple .
+
+    2) docker run -d --name fastapi-app-simple-container -p 8000:8000 fastapi-app-simple
+
 
 - aws Change security
 
@@ -74,6 +96,4 @@
 
 - sudo apt install webhook <- in ec2
   
-- aws hooks command: webhook -hooks /home/ubuntu/webhook/hooks.json -verbose -port 7000
 
-    Run the above command in aws ec2.
