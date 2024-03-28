@@ -19,7 +19,3 @@ def final():
 @app.get("/hello")
 def hello():
     return {"hello": "Hello World"}
-
-@app.get("/Info")
-def Info():
-    return {"Info": "Hello World"}
