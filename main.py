@@ -15,3 +15,7 @@ def get_data():
 @app.get("/final")
 def final():
     return {"final": "Hello World"}
+
+@app.get("/hello")
+def hello():
+    return {"hello": "Hello World"}
