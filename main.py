@@ -15,6 +15,3 @@ def get_data():
 @app.get("/final")
 def final():
     return {"final": "Hello World"}
-
-
-uvicorn.run(app, host="0.0.0.0")
