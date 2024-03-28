@@ -16,4 +16,9 @@ def get_data():
     return {"data": "Hello World"}
 
 
-# uvicorn.run(app, host="0.0.0.0")
+
+@app.get("/datafinal")
+def get_data():
+    return {"data": "datafinal Hello World"}
+
+uvicorn.run(app, host="0.0.0.0")
