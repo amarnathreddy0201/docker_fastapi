@@ -12,6 +12,9 @@ def read_root():
 def get_data():
     return {"data": "Hello World"}
 
+@app.get("/final")
+def final():
+    return {"final": "Hello World"}
 
 @app.get("/hello")
 def hello():
@@ -20,9 +23,3 @@ def hello():
 @app.get("/Info")
 def Info():
     return {"Info": "Hello World"}
-
-
-
-@app.get("/final")
-def final():
-    return {"final": "Hello World"}
