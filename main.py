@@ -17,7 +17,7 @@ def get_data():
 
 
 
-@app.get("/datafinal")
+@app.get("/final")
 def get_data():
     return {"data": "datafinal Hello World"}
 
