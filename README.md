@@ -71,5 +71,9 @@
 - aws Change security
 
     Secutity --> security group -> inbound rules -> Alltraffic , anywhere -> save changes.
-        
 
+- sudo apt install webhook <- in ec2
+  
+- aws hooks command: webhook -hooks /home/ubuntu/webhook/hooks.json -verbose -port 7000
+
+    Run the above command in aws ec2.
