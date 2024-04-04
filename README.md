@@ -1,5 +1,73 @@
 # docker_fastapi
 
+# First Run the Application Locally if it works set up the same thing in AWS EC2.
+
+    1. Write main.py
+
+        ```
+            from fastapi import FastAPI
+            import uvicorn
+            app = FastAPI()
+
+
+            @app.get("/")
+            def read_root():
+                return {"Hello": "World"}
+
+
+            @app.get("/data")
+            def get_data():
+                return {"data": "Hello World"}
+
+            @app.get("/final")
+            def final():
+                return {"final": "Hello World"}
+
+            @app.get("/hello")
+            def hello():
+                return {"hello": "Hello World"}
+
+            @app.get("hello2")
+            def hello2():
+                return {"hello2": "Hello World"}
+        ```
+
+    
+    2. Dockerfile
+
+        ```
+            # Use the official Python image
+            FROM python:3.9-slim
+
+            # Set the working directory in the container
+            WORKDIR /app
+
+            # Copy the dependencies file to the working directory
+            COPY requirements.txt .
+
+            # Install FastAPI and Uvicorn
+            RUN pip install --no-cache-dir -r requirements.txt
+
+            # Copy the content of the local src directory to the working directory
+            COPY . .
+
+            # Command to run the FastAPI application with Uvicorn
+            CMD ["uvicorn","main:app","--host","0.0.0.0","--port","8000"]
+        ```
+
+    3. Where Dockerfile name exists, in that directory we gonna execute below commands.
+
+    - docker build -t my-app-image .
+
+        my-app-image : name of your image.
+
+    - docker run -d -p 8000:8000 --name fastapi-app-simple-container fastapi-app-simple
+
+        fastapi-app-simple-container : name of your container.
+
+        fastapi-app-simple : name of the image.
+
+
 # docker locally
 
     - docker build -t fastapi-app-simple .
@@ -9,20 +77,35 @@
         fastapi-app-simple(image name) and . represents present directory.
 
 
-    - docker run -d -p 80:8000 fastapi-app-simple
+    - docker run -d -p 80:8000 --name fastapi-app-simple-container fastapi-app-simple
 
         80 for docker.
 
         8000 for local machine.
+
+        fastapi-app-simple-container : Container name
+
+        fastapi-app-simple : image name
+
+
+# When you install Application in AWS EC2 We gonna take about container name.
+
+    - In webhook/script.sh we gonna update container name.
+
+    ```
+        Command for checking Docker container names.
+
+            1. docker images
+    ```
 
 
 # set the secret key and password
 
     - In the repository go to settings -> secerts and variables -> Action
 
-    DOCKER_ACCESS_TOKEN : your docker password.
+        DOCKER_ACCESS_TOKEN : your docker password.
 
-    DOCKER_USERNAME : docker user name
+        DOCKER_USERNAME : docker user name
 
 
 # Folder structure in the ec2
