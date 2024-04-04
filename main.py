@@ -21,10 +21,10 @@ def final():
 def hello():
     return {"hello": "Hello World"}
 
-@app.get("hello2")
+@app.get("/hello2")
 def hello2():
     return {"hello2": "Hello World"}
 
-@app.get("love")
+@app.get("/love")
 def love():
     return hello_amar()
