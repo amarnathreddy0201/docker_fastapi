@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import uvicorn
 app = FastAPI()
+from main1 import hello_amar
 
 
 @app.get("/")
@@ -23,3 +24,7 @@ def hello():
 @app.get("hello2")
 def hello2():
     return {"hello2": "Hello World"}
+
+@app.get("love")
+def love():
+    return hello_amar()
